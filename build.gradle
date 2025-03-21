@@ -10,8 +10,19 @@ repositories {
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Junit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+
+    // RestAssurd
+    testImplementation 'io.rest-assured:rest-assured:5.3.0'
+    // Json parser
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+
+    // AssertJ for better assertions
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+
 }
 
 test {
