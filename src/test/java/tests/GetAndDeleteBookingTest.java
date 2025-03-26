@@ -64,5 +64,14 @@ public class GetAndDeleteBookingTest {
 
         // Проверяем, что статус ответа 200 (ОК)
         assertThat(deleteResponse.getStatusCode()).isEqualTo(201);
+
+        // Проверка, что ID больше не существует
+        Response checkResponse = apiClient.getBookingId(bookingId);
+
+        // Логирование статуса ответа на проверку
+        logger.info("Код ответа на проверку существования bookingId: {}", checkResponse.getStatusCode());
+
+        // Проверяем, что статус ответа 404 (Not Found)
+        assertThat(checkResponse.getStatusCode()).isEqualTo(404);
     }
 }
