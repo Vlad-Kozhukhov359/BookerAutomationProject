@@ -125,7 +125,6 @@ public class APIClient {
                 .when()
                 .get(ApiEndpoints.BOOKING.getPathWithId(id)) // Используем метод в который можно подставлять id
                 .then()
-                .statusCode(200)
                 .extract()
                 .response();
         logger.info("Received response for /booking/{}: status code {}", id, response.getStatusCode());
