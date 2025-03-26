@@ -30,7 +30,7 @@ public class GetBookingIdTest {
         logger.info("Starting testGetBookingId");
 
         // Указываем ID бронирования, которое хотим протестировать
-        int bookingId = 3;
+        int bookingId = 2;
 
         // Выполняем запрос к конкретному бронированию по ID
         Response bookingResponse = apiClient.getBookingId(bookingId);
