@@ -148,4 +148,19 @@ public class APIClient {
         logger.info("Response status code: {}", response.getStatusCode()); // Логируем статус ответа
         return response;
     }
+
+    public Response createBooking(String newBooking) {
+        logger.info("Starting POST request for newBooking: {}", newBooking);
+
+        Response response = getRequestSpec()
+                .body(newBooking)
+                .when()
+                .post(ApiEndpoints.BOOKING.getPath()) // Используем метод, в который можно подставлять id
+                .then()
+                .extract()
+                .response();
+
+        logger.info("Response status code: {}", response.getStatusCode()); // Логируем статус ответа
+        return response;
+    }
 }
