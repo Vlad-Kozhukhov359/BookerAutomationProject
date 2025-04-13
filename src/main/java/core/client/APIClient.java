@@ -179,4 +179,21 @@ public class APIClient {
         logger.info("PUT response status: {}", response.getStatusCode());
         return response;
     }
+    // PATCH запрос на эндпоинт /booking/{id}
+    public Response patchBooking(int id, String body) {
+        logger.info("Sending PATCH request to /booking/{}", id);
+
+        Response response = getRequestSpec()
+                .pathParam("id", id)
+                .body(body)
+                .when()
+                .patch(ApiEndpoints.BOOKING.getPath() + "/{id}")
+                .then()
+                .log().all()
+                .extract()
+                .response();
+
+        logger.info("PATCH response status: {}", response.getStatusCode());
+        return response;
+    }
 }
