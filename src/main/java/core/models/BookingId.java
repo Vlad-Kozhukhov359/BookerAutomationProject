@@ -88,36 +88,4 @@ public class BookingId {
     public void setAdditionalneeds(String additionalneeds) {
         this.additionalneeds = additionalneeds;
     }
-
-    // Вложенный класс для bookingdates
-    public static class BookingDates {
-        private String checkin;
-        private String checkout;
-
-        // Конструктор
-        @JsonCreator
-        public BookingDates(
-                @JsonProperty("checkin") String checkin,
-                @JsonProperty("checkout") String checkout) {
-            this.checkin = checkin;
-            this.checkout = checkout;
-        }
-
-        // Геттеры и сеттеры
-        public String getCheckin() {
-            return checkin;
-        }
-
-        public void setCheckin(String checkin) {
-            this.checkin = checkin;
-        }
-
-        public String getCheckout() {
-            return checkout;
-        }
-
-        public void setCheckout(String checkout) {
-            this.checkout = checkout;
-        }
-    }
 }
