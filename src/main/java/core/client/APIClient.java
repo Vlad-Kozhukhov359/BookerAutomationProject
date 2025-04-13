@@ -163,4 +163,20 @@ public class APIClient {
         logger.info("Response status code: {}", response.getStatusCode()); // Логируем статус ответа
         return response;
     }
+
+    // PUT запрос на эндпоинт /booking/{id}
+    public Response putBooking(int id, String body) {
+        logger.info("Sending PUT request to /booking/{}", id);
+        Response response = getRequestSpec()
+                .pathParam("id", id)
+                .body(body)
+                .when()
+                .put(ApiEndpoints.BOOKING.getPath() + "/{id}")
+                .then()
+                .log().all()
+                .extract()
+                .response();
+        logger.info("PUT response status: {}", response.getStatusCode());
+        return response;
+    }
 }
