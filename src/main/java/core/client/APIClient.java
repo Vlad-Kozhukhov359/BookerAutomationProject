@@ -148,4 +148,67 @@ public class APIClient {
         logger.info("Response status code: {}", response.getStatusCode()); // Логируем статус ответа
         return response;
     }
+
+    public Response createBooking(String newBooking) {
+        logger.info("Starting POST request for newBooking: {}", newBooking);
+
+        Response response = getRequestSpec()
+                .body(newBooking)
+                .when()
+                .post(ApiEndpoints.BOOKING.getPath()) // Используем метод, в который можно подставлять id
+                .then()
+                .extract()
+                .response();
+
+        logger.info("Response status code: {}", response.getStatusCode()); // Логируем статус ответа
+        return response;
+    }
+
+    // PUT запрос на эндпоинт /booking/{id}
+    public Response putBooking(int id, String body) {
+        logger.info("Sending PUT request to /booking/{}", id);
+        Response response = getRequestSpec()
+                .pathParam("id", id)
+                .body(body)
+                .when()
+                .put(ApiEndpoints.BOOKING.getPath() + "/{id}")
+                .then()
+                .log().all()
+                .extract()
+                .response();
+        logger.info("PUT response status: {}", response.getStatusCode());
+        return response;
+    }
+
+    // PATCH запрос на эндпоинт /booking/{id}
+    public Response patchBooking(int id, String body) {
+        logger.info("Sending PATCH request to /booking/{}", id);
+
+        Response response = getRequestSpec()
+                .pathParam("id", id)
+                .body(body)
+                .when()
+                .patch(ApiEndpoints.BOOKING.getPath() + "/{id}")
+                .then()
+                .log().all()
+                .extract()
+                .response();
+
+        logger.info("PATCH response status: {}", response.getStatusCode());
+        return response;
+    }
+
+    // GET запрос с параметрами
+    public Response getBookingWithParams(String paramName, String paramValue) {
+        logger.info("Sending GET request to /booking?{}={}", paramName, paramValue);
+
+        return getRequestSpec()
+                .queryParam(paramName, paramValue)
+                .when()
+                .get(ApiEndpoints.BOOKING.getPath())
+                .then()
+                .log().all()
+                .extract()
+                .response();
+    }
 }
